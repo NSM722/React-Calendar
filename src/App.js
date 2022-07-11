@@ -95,7 +95,15 @@ const App = () => {
     getAdvice()
   }, [])
 
+  const handleClickNext = () => {
+    setMonthCounter(monthCounter + 1)
+    getAdvice();
+  }
 
+  const handleClickPrevious = () => {
+    setMonthCounter(monthCounter - 1)
+    getAdvice();
+  }
 
   return (
     <>
@@ -105,8 +113,8 @@ const App = () => {
         </div>
         <Header 
           dateDisplay={dateDisplay}
-          handleClickNext={() => setMonthCounter(monthCounter + 1)}
-          handleClickPrevious={() => setMonthCounter(monthCounter - 1)}
+          handleClickNext={handleClickNext}
+          handleClickPrevious={handleClickPrevious}
         />
         <div id="weekdays">
           <div>Mon</div>
