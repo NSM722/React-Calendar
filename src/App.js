@@ -16,9 +16,23 @@ const App = () => {
     localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : []
   )
 
+  const [advice, setAdvice] = useState("loading...");
+  
   const eventForDate = date => {
     return events.find(event => {
       return event.date === date
+    });
+  }
+
+  const getAdvice = () => {
+    fetch("https://api.adviceslip.com/advice")
+    .then(response => response.json())
+    .then(data => {
+      //console.log(data);
+      setAdvice(data.slip.advice)
+    })
+    .catch(error => {
+      console.error(error);
     });
   }
 
@@ -28,11 +42,17 @@ const App = () => {
 
   const { days, dateDisplay } = useDateAPI(events, monthCounter)
 
+  useEffect(() => {
+    getAdvice()
+  }, [])
+
+
+
   return (
     <>
       <div id="container">
         <div className="advice-container">
-          <p id="advice"></p>
+          <p id="advice">{advice}</p>
         </div>
         <Header 
           dateDisplay={dateDisplay}
