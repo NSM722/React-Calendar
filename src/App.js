@@ -3,13 +3,14 @@ import Day from "../src/components/Day";
 import NewEventModal from './components/NewEventModal';
 import DeleteEventModal from './components/DeleteEventModal';
 import Header from './components/Header';
+import useDateAPI from './hooks/useDateAPI';
 
 
 
 const App = () => {
   const [monthCounter, setMonthCounter] = useState(0);
-  const [days, setDays] = useState([]);
-  const [dateDisplay, setDateDisplay] = useState("");
+  //const [days, setDays] = useState([]);
+  //const [dateDisplay, setDateDisplay] = useState("");
   const [clicked, setClicked] = useState();
   const [events, setEvents] = useState(
     localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : []
@@ -39,57 +40,7 @@ const App = () => {
     localStorage.setItem("events", JSON.stringify(events));
   }, [events]);
 
-  useEffect(() => {
-    const weekdays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun',];
-    const date = new Date();
-
-    if (monthCounter !== 0) {
-      date.setMonth(new Date().getMonth() + monthCounter, 1);
-    }
-
-    const day = date.getDate();
-    const month = date.getMonth();
-    const year = date.getFullYear();
-
-    const firstDayOfMonth = new Date(year, month, 1)
-    const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-    const options = { 
-      weekday: 'short', 
-      year: 'numeric', 
-      month: 'long', 
-      day: 'numeric' 
-    };
-
-    const dateString = firstDayOfMonth.toLocaleDateString('en-GB', options);
-
-    setDateDisplay(`${date.toLocaleDateString('en-GB', { month: 'long' })} ${year}`)
-    const paddingDays = weekdays.indexOf(dateString.split(', ')[0]);
-
-    const daysArray = [];
-
-    for (let i = 1; i <= paddingDays + daysInMonth; i++) {
-      const clickedDateString = `${i - paddingDays}/${month + 1}/${year}`;
-
-      if(i > paddingDays) {
-        daysArray.push({
-          dayValue: i - paddingDays,
-          dayEvent: eventForDate(clickedDateString),
-          isCurrentDay: i - paddingDays === day && monthCounter === 0,
-          date: clickedDateString
-        });
-      } else {
-          daysArray.push({
-          dayValue: "padding",
-          dayEvent: null,
-          isCurrentDay: false,
-          date: ""
-        });
-      }
-      setDays(daysArray);
-    }
-
-  }, [events, monthCounter]);
+  const { days, dateDisplay } = useDateAPI(events, monthCounter)
 
   useEffect(() => {
     getAdvice()
