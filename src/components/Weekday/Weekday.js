@@ -1,5 +1,9 @@
 import React from 'react';
 
+/**
+ * Component that renders all the days
+ * of the week
+ */
 const Weekday = () => {
   return (
     <>

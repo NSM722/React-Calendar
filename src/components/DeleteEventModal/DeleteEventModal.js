@@ -1,6 +1,12 @@
 import React from 'react';
 import './DeleteEventModal.css';
 
+
+/**
+ * 
+ * @param {component} param0 
+ * @ deletes existing event 
+ */
 const DeleteEventModal = ({handleClickDelete, eventText, handleClickClose}) => {
   return (
     <>

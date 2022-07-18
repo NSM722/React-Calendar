@@ -11,14 +11,28 @@ import useDateAPI from './hooks/useDateAPI';
 
 
 const App = () => {
+  /**
+   * State that keeps track of the month 
+   * upon clicking the previous and back button
+   */
   const [monthCounter, setMonthCounter] = useState(0);
-  //const [days, setDays] = useState([]);
-  //const [dateDisplay, setDateDisplay] = useState("");
+  
+  /**
+   *  Day/Date that is clicked on to create or delete
+   * an event
+   */
   const [clicked, setClicked] = useState();
+
+  /**
+   * Array state of event objects - the array is manipulated 
+   * depending on the user adding or deleting events
+   */
   const [events, setEvents] = useState(
+    /** Initializing the events variable in local storage*/
     localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : []
   )
 
+  // Api state
   const [advice, setAdvice] = useState("Loading...");
   
   const eventForDate = date => {
@@ -40,10 +54,16 @@ const App = () => {
     });
   }
 
+  /**
+   * State that updates local storage when events 
+   * value changes
+   */
   useEffect(() => {
     localStorage.setItem("events", JSON.stringify(events));
   }, [events]);
 
+
+  // Destructing days and dateDisplay from the useDateAPI hook
   const { days, dateDisplay } = useDateAPI(events, monthCounter)
 
   // eslint-disable-next-line no-lone-blocks
@@ -51,11 +71,19 @@ const App = () => {
     getAdvice()
   }, [])
 
+  /**
+   * Helper function to increment month upon
+   * clicking on the next button
+   */
   const handleClickNext = () => {
     setMonthCounter(monthCounter + 1)
     getAdvice()
   }
 
+  /**
+   * Helper function to decrement month upon
+   * clicking on the previous button
+   */
   const handleClickPrevious = () => {
     setMonthCounter(monthCounter - 1)
     getAdvice()
@@ -74,6 +102,9 @@ const App = () => {
         />
         <Weekday />
         <div id="calendar">
+          {/**
+           * Mapping a single day onto a Day component
+           */}
           {days.map((day, index) => (
             <Day 
               key={index}
