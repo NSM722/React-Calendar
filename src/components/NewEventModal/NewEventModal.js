@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './NewEventModal.css';
 
 const NewEventModal = ({ handleClickSave, handleClickClose }) => {
 

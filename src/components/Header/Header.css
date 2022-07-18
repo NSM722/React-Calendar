@@ -1,0 +1,7 @@
+#header {
+  padding: 10px;
+  color: var(--black-shade1);
+  font-size: 26px;
+  display: flex;
+  justify-content: space-between;
+}

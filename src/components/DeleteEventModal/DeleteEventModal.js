@@ -1,4 +1,5 @@
 import React from 'react';
+import './DeleteEventModal.css';
 
 const DeleteEventModal = ({handleClickDelete, eventText, handleClickClose}) => {
   return (

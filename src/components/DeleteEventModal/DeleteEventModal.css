@@ -1,0 +1,17 @@
+#deleteEventModal {
+  /*display: none;*/
+  z-index: 20;
+  padding: 25px;
+  background-color: var(--gray-shade2);
+  box-shadow: 0px 0px 3px var(--gray-shade1);
+  border-radius: 5px;
+  width: 350px;
+  top: 100px;
+  left: calc(50% - 175px);
+  position: absolute;
+  font-family: sans-serif;
+}
+
+#eventText {
+  font-size: 16px;
+}
