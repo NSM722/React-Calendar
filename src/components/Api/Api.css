@@ -1,0 +1,11 @@
+.advice-container {
+  text-align: center;
+  border: outset 2px var(--gray-shade1);
+  border-radius: 5px;
+}
+
+#advice {
+  font-size: 18px;
+  font-weight: bolder;
+  color: var(--dark-red);
+}

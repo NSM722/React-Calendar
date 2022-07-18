@@ -1,4 +1,7 @@
 import React from 'react';
+import './Header.css';
+import '../Button/Button.css'
+
 
 const Header = ({handleClickNext, handleClickPrevious, dateDisplay}) => {
   return (

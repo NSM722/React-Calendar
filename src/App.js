@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import Day from "../src/components/Day";
-import NewEventModal from './components/NewEventModal';
-import DeleteEventModal from './components/DeleteEventModal';
-import Header from './components/Header';
+import Day from "./components/Day/Day";
+import Weekday from './components/Weekday/Weekday';
+import NewEventModal from './components/NewEventModal/NewEventModal';
+import DeleteEventModal from './components/DeleteEventModal/DeleteEventModal';
+import Header from './components/Header/Header';
 import useDateAPI from './hooks/useDateAPI';
+//import Api from './components/Api/Api';
+//import getAdvice from './components/Api/Api';
 
 
 
@@ -16,7 +19,7 @@ const App = () => {
     localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : []
   )
 
-  const [advice, setAdvice] = useState("loading...");
+  const [advice, setAdvice] = useState("Loading...");
   
   const eventForDate = date => {
     return events.find(event => {
@@ -24,6 +27,7 @@ const App = () => {
     });
   }
 
+  // eslint-disable-next-line no-lone-blocks
   const getAdvice = () => {
     fetch("https://api.adviceslip.com/advice")
     .then(response => response.json())
@@ -42,18 +46,19 @@ const App = () => {
 
   const { days, dateDisplay } = useDateAPI(events, monthCounter)
 
+  // eslint-disable-next-line no-lone-blocks
   useEffect(() => {
     getAdvice()
   }, [])
 
   const handleClickNext = () => {
     setMonthCounter(monthCounter + 1)
-    getAdvice();
+    getAdvice()
   }
 
   const handleClickPrevious = () => {
     setMonthCounter(monthCounter - 1)
-    getAdvice();
+    getAdvice()
   }
 
   return (
@@ -67,15 +72,7 @@ const App = () => {
           handleClickNext={handleClickNext}
           handleClickPrevious={handleClickPrevious}
         />
-        <div id="weekdays">
-          <div>Mon</div>
-          <div>Tue</div>
-          <div>Wed</div>
-          <div>Thu</div>
-          <div>Fri</div>
-          <div>Sat</div>
-          <div>Sun</div>
-        </div>
+        <Weekday />
         <div id="calendar">
           {days.map((day, index) => (
             <Day 

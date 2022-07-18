@@ -1,0 +1,17 @@
+#weekdays {
+  width: 100%;
+  display: flex;
+  color: var(--black-shade1);
+}
+
+#weekdays div {
+  width: 100px;
+  padding: 10px;
+}
+
+/*
+.weekdayContainer, .dayContainer {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+*/

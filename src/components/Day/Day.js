@@ -1,4 +1,5 @@
 import React from 'react';
+import './Day.css';
 
 const Day = ({day, handleClick}) => {
   const daySquareClass = `day ${day.dayValue === "padding" ? "padding" : ""}
