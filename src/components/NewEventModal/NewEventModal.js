@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
 import './NewEventModal.css';
 
+/**
+ * 
+ * @param {component}  
+ * @returns a new Event Modal
+ * 
+ */
+
 const NewEventModal = ({ handleClickSave, handleClickClose }) => {
 
   const [title, setTitle] = useState("");

@@ -1,7 +1,16 @@
 import React from 'react';
 import './Day.css';
 
+  /**
+   * Under the return statement a div 
+   * is created for every existing day
+   * with necessary classes added
+   * Additionally a div for an event is 
+   * also created and given a class
+   */
+
 const Day = ({day, handleClick}) => {
+  // Variable to hold different classes for the day
   const daySquareClass = `day ${day.dayValue === "padding" ? "padding" : ""}
   ${day.isCurrentDay ? "currentDay" : ""}`
   return (
