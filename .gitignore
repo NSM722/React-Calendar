@@ -3,6 +3,7 @@
 Api.js
 Calendar.js
 Calendar.css
+App.test.js
 
 # dependencies
 /node_modules
