@@ -16,6 +16,8 @@ Under the hood, I worked on the following concepts:
 * Testing with React Testing Library
 * Using the Date API
 * Function components
+
+Try the [live demo](https://dancing-mermaid-fddc49.netlify.app/ "React Calendar App")
 ___
 
 ## Getting Started with Create React App
